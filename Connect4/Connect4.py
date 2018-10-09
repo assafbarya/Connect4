@@ -42,6 +42,42 @@ class Board:
         self.board[ height, colNum ] = color
         return 0
 
+    def _getSubRow( self, rowIdx, colIdx ):
+        return self.board[ rowIdx, colIdx : ( colIdx + 4 ) ]
+
+    def _getSubCol( self, rowIdx, colIdx ):
+        return self.board[ rowIdx : ( rowIdx + 4 ), colIdx ]
+
+    def _getSubDiag1( self, rowIdx, colIdx ):
+        return np.diag( self.board[ rowIdx : ( rowIdx + 4 ), colIdx : ( colIdx + 4 ) ] )
+
+    def _getSubDiag2( self, rowIdx, colIdx ):
+        return np.diag( np.fliplr( self.board[ rowIdx : ( rowIdx + 4 ), colIdx : ( colIdx + 4 ) ] ) )
+
+    def _rowSubColGenerator( self ):
+        for rowIdx in range( 6 ):
+            for colIdx in range( 4 ):
+                yield self._getSubRow( rowIdx, colIdx )
+
+    def _colSubColGenerator( self ):
+        for rowIdx in range( 3 ):
+            for colIdx in range( 7 ):
+                yield self._getSubCol( rowIdx, colIdx )
+
+    def _diag1SubColGenerator( self ):
+        for rowIdx in range( 3 ):
+            for colIdx in range( 4 ):
+                yield self._getSubDiag1( rowIdx, colIdx )
+
+    def _diag2SubColGenerator( self ):
+        for rowIdx in range( 3 ):
+            for colIdx in range( 4 ):
+                yield self._getSubDiag2( rowIdx, colIdx )
+
+
+
+
+
 
         
 
