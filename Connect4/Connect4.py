@@ -74,8 +74,18 @@ class Board:
             for colIdx in range( 4 ):
                 yield self._getSubDiag2( rowIdx, colIdx )
 
+    def _subColGenerator( self ):
+        for row in self._rowSubColGenerator():
+            yield row
 
+        for col in self._colSubColGenerator():
+            yield col
 
+        for diag1 in self._diag1SubColGenerator():
+            yield diag1
+
+        for diag2 in self._diag1SubColGenerator():
+            yield diag2
 
 
 
@@ -88,11 +98,20 @@ class Board:
 
 def main():
     b = Board()
-    for x in range(10):
-        column = int( input('enter column') )
-        color = int( input('enter color') )
-        b.add( color, column )
-        print (b)
+    for i in range (6):
+        for j in range(7):
+            b.board[i,j] = i*7+j
+
+    for c in b._subColGenerator():
+        print (c)
+
+    print (b)
+
+    #for x in range(10):
+    #    column = int( input('enter column') )
+    #    color = int( input('enter color') )
+    #    b.add( color, column )
+    #    print (b)
 
 
 
