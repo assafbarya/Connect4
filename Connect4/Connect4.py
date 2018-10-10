@@ -6,8 +6,6 @@ def main():
     color = 1
     while (1):
         column = int( input('enter column') )
-        if column > 6:
-            break
         r = b.add( color, column )
         if -1 == r:
             print ('error')
