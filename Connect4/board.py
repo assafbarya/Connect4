@@ -98,4 +98,10 @@ class Board(object):
                 return r
         return 0
 
+    def isFull( self ):
+        for colNum in range( 7 ):
+            if not ( self._getHeight( colNum ) == 6 ):
+                return False
+        return True
+
 
