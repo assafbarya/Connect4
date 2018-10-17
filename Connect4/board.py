@@ -14,7 +14,7 @@ class Board(object):
     def _getCol( self, colNum ):
         return self.board[ :, colNum ]
 
-    def _getHeight( self, colNum ):
+    def getHeight( self, colNum ):
         ''' return the lowest empty slot '''
         col = self._getCol( colNum )
         isEmpty = ( col == 0 )
@@ -33,7 +33,7 @@ class Board(object):
     def add( self, color, colNum ):
         if colNum < 0 or colNum > 6:
             return -1
-        height = self._getHeight( colNum )
+        height = self.getHeight( colNum )
         if  height == 6:
             return -1
         self.board[ height, colNum ] = color
