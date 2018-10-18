@@ -1,6 +1,7 @@
 from agentInterface import AgentInterface
+import numpy as np
 
-class ruleAbidingAgent( AgentInterface ):
+class RuleAbidingAgent( AgentInterface ):
     def __init__( self ):
         self.board = None
 
@@ -13,7 +14,7 @@ class ruleAbidingAgent( AgentInterface ):
         else:
             legalMoves  = []
             for move in range( 7 ):
-                if self.board.getHecopyright( move ) < 6:
+                if self.board.getHeight( move ) < 6:
                     legalMoves.append( move )
             moveIdx = np.random.randint( len( legalMoves ) )
             return legalMoves[ moveIdx ]

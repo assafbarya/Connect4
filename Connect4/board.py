@@ -6,7 +6,7 @@ class Board(object):
         self.board = np.zeros( [ 6, 7 ] ).astype(int)
 
     def __str__( self ):
-        return self.board[::-1].__str__()
+        return '\n' + self.board[::-1].__str__()
 
     def _getRow( self, rowNum ):
         return self.board[ rowNum, : ]
@@ -81,7 +81,7 @@ class Board(object):
         for diag1 in self._diag1SubVecGenerator():
             yield diag1
 
-        for diag2 in self._diag1SubVecGenerator():
+        for diag2 in self._diag2SubVecGenerator():
             yield diag2
 
     @staticmethod
@@ -100,7 +100,7 @@ class Board(object):
 
     def isFull( self ):
         for colNum in range( 7 ):
-            if not ( self._getHeight( colNum ) == 6 ):
+            if not ( self.getHeight( colNum ) == 6 ):
                 return False
         return True
 
