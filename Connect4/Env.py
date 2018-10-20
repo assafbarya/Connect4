@@ -6,16 +6,19 @@ class Env( object ):
     def _createLogger( self, level ):
         self.logger = logging.getLogger( 'Connect4' )
         self.logger.setLevel( level )
-        ch = logging.StreamHandler()
-        ch.setLevel( level )
+        self.ch = logging.StreamHandler()
+        self.ch.setLevel( level )
         formatter = logging.Formatter( '%(asctime)s - %(name)s - %(levelname)s - %(message)s' )
-        ch.setFormatter( formatter )
-        self.logger.addHandler( ch )
+        self.ch.setFormatter( formatter )
+        self.logger.addHandler( self.ch )
 
     def __init__( self, agent1, agent2, loggingLevel ):
         self.agents = [ agent1, agent2 ]
         self.board  = Board()
         self._createLogger( loggingLevel )
+
+    def __del__( self ):
+        self.logger.removeHandler( self.ch )
 
     @staticmethod
     def _nextTurn( agentIdx ):
@@ -30,7 +33,7 @@ class Env( object ):
         agentIdx = 0
         while not finished:
             if self.board.isFull():
-                self.logger.debug( 'game ended in draw' )
+                self.logger.info( 'game ended in draw' )
                 break
             action = self.agents[ agentIdx ].getAction()
             self.logger.debug( 'player {} chose action {}'.format( agentIdx, action ) )

@@ -22,14 +22,4 @@ class RuleAbidingAgent( AgentInterface ):
     def update( self, nextState, _reward ):
         self.board = nextState
 
-    def setState( self, state ):
-        raise NotImplementedError()
-
-    def getState( self ):
-        raise NotImplementedError()
-
-
-
-    """description of class"""
-
 

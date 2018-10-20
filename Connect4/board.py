@@ -1,7 +1,14 @@
 import numpy as np
+import copy
 
 class Board(object):
-    """description of class"""
+    """connect4 board"""
+
+    def make_copy( self ):
+        b = Board()
+        b.board = copy.copy( self.board )
+        return b
+
     def __init__( self ):
         self.board = np.zeros( [ 6, 7 ] ).astype(int)
 

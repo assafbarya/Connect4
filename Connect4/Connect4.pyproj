@@ -31,6 +31,9 @@
     <Compile Include="Env.py">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="minMaxAgent.py">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="ruleAbidingAgent.py">
       <SubType>Code</SubType>
     </Compile>
