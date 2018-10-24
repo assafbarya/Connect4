@@ -15,6 +15,9 @@ class Board(object):
     def __str__( self ):
         return '\n' + self.board[::-1].__str__()
 
+    def __repr__( self ):
+        return self.__str__()
+
     def _getRow( self, rowNum ):
         return self.board[ rowNum, : ]
 
