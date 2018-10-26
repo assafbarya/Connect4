@@ -21,6 +21,7 @@
     <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="actionSelectorInterface.py" />
     <Compile Include="board.py">
       <SubType>Code</SubType>
     </Compile>
@@ -31,15 +32,20 @@
     <Compile Include="Env.py">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="epsGreedySelector.py" />
     <Compile Include="humanAgent.py">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="minMaxAgent.py">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="rlAgent.py">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="ruleAbidingAgent.py">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="softMaxSelector.py" />
     <Compile Include="test_board.py">
       <SubType>Code</SubType>
     </Compile>
