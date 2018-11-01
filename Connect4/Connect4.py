@@ -18,9 +18,11 @@ def main():
     #    e  = Env( agent1, agent2, logging.INFO )
     #    e.play()
     agent1 = MinMaxAgent( 1, 1 )
-    agent2 = RLAgent( EpsGreedySelector(), filename )
+    #agent1 = RLAgent( EpsGreedySelector() )
+    #agent2 = RLAgent( EpsGreedySelector(), filename )
+    agent2 = RLAgent( EpsGreedySelector() )
     e  = Env( agent1, agent2, logging.INFO )
-    e.playGames( 10000 )
+    e.playGames( 1000 )
 
     agent2.model.save_weights( filename )
     

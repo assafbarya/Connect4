@@ -60,10 +60,12 @@ class Env( object ):
                 self.logger.info( 'player {} won'.format( agentIdx ) )
                 break
 
-            for agent in self.agents:
-                agent.update( self.board, 0 )
-
             agentIdx = self._nextTurn( agentIdx )
+
+            ## if nothing happened - only update the player who didnt play right now
+            self.agents[ agentIdx ] .update( self.board, 0 )
+            
+            
 
 
 

@@ -20,7 +20,7 @@ class RLAgent( AgentInterface ):
         self.model.add( Dense( 100, activation = 'relu' ) )
         self.model.add( Dense( 7 ) )
         #self.model.compile( sgd(lr=.02),'mse')
-        self.model.compile( loss = 'mse', optimizer = 'adam', metrics = [ 'mae' ] )
+        self.model.compile( loss = 'mse', optimizer = 'adam' )
 
         if weightsFile:
             self.model.load_weights( weightsFile )
@@ -38,7 +38,9 @@ class RLAgent( AgentInterface ):
 
     def update( self, nextState, reward ):
         if not self.lastAction:
+            self.board = nextState.make_copy()
             return
+
         if reward == 0: ## if there's a non zero reward, that's the last move of the game and there's no discounting of future rewards
             target                    = self.discountFactor * np.max( self.model.predict( nextState.asVector() ) )
         else:
