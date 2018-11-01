@@ -22,7 +22,7 @@ def main():
     #agent2 = RLAgent( EpsGreedySelector(), filename )
     agent2 = RLAgent( EpsGreedySelector() )
     e  = Env( agent1, agent2, logging.INFO )
-    e.playGames( 10000 )
+    e.playGames( 100000 )
 
     agent2.model.save_weights( filename )
     
