@@ -78,6 +78,28 @@ class Test_test_minMaxAgent( unittest.TestCase ):
         a.update( b, 'reward' )
         self.assertEqual( a.getAction(), 2 )
 
+    def test_Win6( self ):
+        '''
+        0000000
+        0000000
+        0000000
+        0000001
+        2000001
+        2221001
+        '''
+        b = Board()
+        b.add( 2, 0 )
+        b.add( 2, 0 )
+        b.add( 2, 1 )
+        b.add( 2, 2 )
+        b.add( 1, 3 )
+        b.add( 1, 6 )
+        b.add( 1, 6 )
+        b.add( 1, 6 )
+        a = MinMaxAgent( 2, 4 )
+        a.update( b, 'reward' )
+        self.assertEqual( a.getAction(), 6 )
+
 
     def test_DontLose( self ):
         b = Board()

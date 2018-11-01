@@ -4,17 +4,26 @@ from minMaxAgent import MinMaxAgent
 from humanAgent import HumanAgent
 from rlAgent import RLAgent
 from softMaxSelector import SoftMaxSelector
+from epsGreedySelector import EpsGreedySelector
 import logging
 
 
 def main():
-    for _x in range(10):
-        #agent1 = RuleAbidingAgent()
-        #agent1 = MinMaxAgent( 1, 1 )
-        agent1 = RLAgent( SoftMaxSelector() )
-        agent2 = MinMaxAgent( 2, 1 )
-        e  = Env( agent1, agent2, logging.DEBUG )
-        e.play()
+    filename = 'c:\\work\\modelWeights.h5'
+    #for _x in range(30):
+    #    #agent1 = RuleAbidingAgent()
+    #    #agent1 = MinMaxAgent( 1, 1 )
+    #    agent1 = RLAgent( SoftMaxSelector() )
+    #    agent2 = MinMaxAgent( 2, 1 )
+    #    e  = Env( agent1, agent2, logging.INFO )
+    #    e.play()
+    agent1 = MinMaxAgent( 1, 1 )
+    agent2 = RLAgent( EpsGreedySelector(), filename )
+    e  = Env( agent1, agent2, logging.INFO )
+    e.playGames( 10000 )
+
+    agent2.model.save_weights( filename )
+    
 
 
             

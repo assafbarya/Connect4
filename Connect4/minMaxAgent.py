@@ -71,5 +71,10 @@ class MinMaxAgent( AgentInterface ):
     def update( self, nextState, _reward ):
         self.board = nextState
 
+    def reset( self ):
+        self.board = None
+
+    
+
 
 

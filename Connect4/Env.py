@@ -28,6 +28,16 @@ class Env( object ):
     def _idxToNum( agentIdx ):
         return agentIdx + 1
 
+    def playGames( self, ngames ):
+        for _ in range( ngames ):
+            self.board  = Board()
+            for agent in self.agents:
+                agent.reset()
+    
+            self.play() 
+
+
+
     def play( self ):
         finished = False
         agentIdx = 0

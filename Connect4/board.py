@@ -9,6 +9,9 @@ class Board(object):
         b.board = copy.copy( self.board )
         return b
 
+    def asVector( self ):
+        return self.board.reshape( 1, -1 )
+
     def __init__( self ):
         self.board = np.zeros( [ 6, 7 ] ).astype(int)
 
