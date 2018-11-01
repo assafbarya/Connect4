@@ -16,9 +16,11 @@ class RLAgent( AgentInterface ):
         self.discountFactor = discountFactor
         self.model          = Sequential()
 
-        self.model.add( Dense( 100, input_shape = (42,), activation = 'relu' ) )
-        self.model.add( Dense( 100, activation = 'relu' ) )
-        self.model.add( Dense( 7 ) )
+        self.model.add( Dense( 100, input_shape = (42,), activation = 'relu', kernel_initializer='zeros' ) )
+        self.model.add( Dense( 100, activation = 'relu', kernel_initializer='zeros' ) )
+        self.model.add( Dense( 100, activation = 'relu', kernel_initializer='zeros' ) )
+        self.model.add( Dense( 100, activation = 'relu', kernel_initializer='zeros' ) )
+        self.model.add( Dense( 7, kernel_initializer='zeros' ) )
         #self.model.compile( sgd(lr=.02),'mse')
         self.model.compile( loss = 'mse', optimizer = 'adam' )
 
@@ -50,7 +52,9 @@ class RLAgent( AgentInterface ):
         target_vec                    = target_vec.reshape( -1, 7 )
 
         self.model.fit( self.board.asVector(), target_vec, epochs = 1, verbose = 0 )
-        self.board = nextState.make_copy()
+
+        if reward == 0:
+            self.board = nextState.make_copy()
 
     def reset( self ):
         self.board          = Board()
