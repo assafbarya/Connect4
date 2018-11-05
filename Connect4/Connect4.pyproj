@@ -33,6 +33,9 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="epsGreedySelector.py" />
+    <Compile Include="historianAgent.py">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="humanAgent.py">
       <SubType>Code</SubType>
     </Compile>

@@ -2,7 +2,8 @@ from Env import Env
 from ruleAbidingAgent import RuleAbidingAgent
 from minMaxAgent import MinMaxAgent
 from humanAgent import HumanAgent
-from rlAgent import RLAgent
+#from rlAgent import RLAgent
+from historianAgent import HistorianAgent
 from softMaxSelector import SoftMaxSelector
 from epsGreedySelector import EpsGreedySelector
 import logging
@@ -20,11 +21,11 @@ def main():
     agent1 = MinMaxAgent( 1, 1 )
     #agent1 = RLAgent( EpsGreedySelector() )
     #agent2 = RLAgent( EpsGreedySelector(), filename )
-    agent2 = RLAgent( EpsGreedySelector() )
-    e  = Env( agent1, agent2, logging.INFO )
-    e.playGames( 100000 )
+    #agent2 = RLAgent( EpsGreedySelector() )
+    agent2 = HistorianAgent()
+    e  = Env( agent1, agent2, logging.ERROR )
+    e.playGames( 1000000 )
 
-    agent2.model.save_weights( filename )
     
 
 

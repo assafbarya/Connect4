@@ -29,10 +29,13 @@ class Env( object ):
         return agentIdx + 1
 
     def playGames( self, ngames ):
-        for _ in range( ngames ):
+        for i in range( ngames ):
             self.board  = Board()
             for agent in self.agents:
                 agent.reset()
+
+            if not ( i % 100 ):
+                print(i)
     
             self.play() 
 
