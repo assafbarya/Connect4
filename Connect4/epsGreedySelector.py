@@ -4,7 +4,7 @@ import numpy as np
 class EpsGreedySelector( ActionSelectorInterface ):
     """description of class"""
 
-    def __init__( self, eps = 0.9, decay = 1 ):
+    def __init__( self, eps = 0, decay = 1 ):
         self.eps   = eps  ## epsilon greedy coefficient
         self.decay = decay ## decay of the epsilon greedy
 

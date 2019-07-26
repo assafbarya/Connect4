@@ -12,29 +12,44 @@ class RLAgent( AgentInterface ):
 
     def __init__(   self, 
                     actionSelector,
-                    weightsFile = None,
+                    memoryFileName = None,
                     discountFactor = 0.95 ):
 
         self.discountFactor = discountFactor
         self.model          = Sequential()
 
-        self.model.add( Dense( 100, input_shape = (42,), activation = 'sigmoid', kernel_initializer='zeros' ) )
-        self.model.add( Dense( 100, activation = 'sigmoid', kernel_initializer='zeros' ) )
-        self.model.add( Dense( 100, activation = 'sigmoid', kernel_initializer='zeros' ) )
-        self.model.add( Dense( 100, activation = 'sigmoid', kernel_initializer='zeros' ) )
-        self.model.add( Dense( 7, activation = 'linear', kernel_initializer='zeros' ) )
-        #self.model.compile( sgd(lr=.2),'mse')
-        self.model.compile( loss = 'mse', optimizer = 'adam', metrics = [ 'mae' ] )
+        self.model.add( Dense( 100, input_shape = (42,), activation = 'relu', kernel_initializer='zeros' ) )
+        self.model.add( Dense( 100, activation = 'relu', kernel_initializer='zeros' ) )
+        self.model.add( Dense( 100, activation = 'relu', kernel_initializer='zeros' ) )
+        self.model.add( Dense( 100, activation = 'relu', kernel_initializer='zeros' ) )
+        self.model.add( Dense( 7, kernel_initializer='zeros' ) )
+        self.model.compile( sgd(lr=.2),'mse')
+        #self.model.compile( loss = 'mse', optimizer = 'adam', metrics = [ 'mae' ] )
 
-        if weightsFile:
-            self.model.load_weights( weightsFile )
+        if memoryFileName:
+            inputs, targets = self._prepare_memory( memoryFileName )
+            self.model.train_on_batch( inputs, targets )
+
         self.reset()
         
         self.actionSelector = actionSelector
         self.memory = []
 
+    @staticmethod
+    def _prepare_memory( memoryFileName ):
+        memory = pickle.load( open( memoryFileName, 'rb' ) )
+        memory_size = len( memory )
+        inputs = np.zeros( ( memory_size, 42 ) )
+        targets = np.zeros( ( memory_size, 7 ) )
+        for i in range( memory_size ):
+            state, action, reward = memory[ i ]
+            inputs[ i ] = state.board.reshape( 1, -1 )
+            targets[ i, action ] = reward 
+        return inputs, targets
+
     def __del__( self ):
-        self.save()
+        #self.save()
+        pass
 
     def getAction( self ):
         action          = self.actionSelector.getAction( self.model.predict( self.board.asVector() ) )
@@ -50,6 +65,7 @@ class RLAgent( AgentInterface ):
         pickle.dump( self.memory, file )
 
     def update( self, nextState, reward ):
+        return
         if self.lastAction is None:
             self.board = nextState.make_copy()
             return

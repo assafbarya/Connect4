@@ -10,7 +10,8 @@ import logging
 
 
 def main():
-    filename = 'c:\\work\\modelWeights.h5'
+    filename = 'c:\\work\\shortMemory.pkl'
+    filename = 'c:\\work\\memories_2018-11-05_849719.pkl'
     #for _x in range(30):
     #    #agent1 = RuleAbidingAgent()
     #    #agent1 = MinMaxAgent( 1, 1 )
@@ -18,13 +19,15 @@ def main():
     #    agent2 = MinMaxAgent( 2, 1 )
     #    e  = Env( agent1, agent2, logging.INFO )
     #    e.play()
-    agent1 = MinMaxAgent( 1, 1 )
+    agent1 = MinMaxAgent( 1, 4 )
     #agent1 = RLAgent( EpsGreedySelector() )
     #agent2 = RLAgent( EpsGreedySelector(), filename )
     #agent2 = RLAgent( EpsGreedySelector() )
-    agent2 = HistorianAgent()
-    e  = Env( agent1, agent2, logging.ERROR )
-    e.playGames( 1000000 )
+    #agent2 = HistorianAgent()
+    agent2 = HumanAgent()
+    e  = Env( agent1, agent2, logging.INFO )
+    #e.playGames( 1 )
+    e.play()
 
     
 

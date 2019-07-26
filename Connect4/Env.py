@@ -66,7 +66,7 @@ class Env( object ):
             agentIdx = self._nextTurn( agentIdx )
 
             ## if nothing happened - only update the player who didnt play right now
-            self.agents[ agentIdx ] .update( self.board, 0 )
+            self.agents[ agentIdx ].update( self.board, 0 )
             
             
 
